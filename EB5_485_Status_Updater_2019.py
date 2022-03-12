@@ -8,6 +8,7 @@
 
 import pandas as pd
 from datetime import datetime
+from pytz import timezone
 from util.get_online_status import get_online_status
 from util.keep_most_recent_status import keep_most_recent_status
 from util.count_approval_by_date import count_approval_by_date
@@ -15,7 +16,7 @@ from util.count_approval_by_date import count_approval_by_date
 pd.options.mode.chained_assignment = None  # default='warn'
 
 FY_YEAR = 2019
-dt = datetime.now().strftime("%Y%m%d-%H%M%S")
+dt = datetime.now(timezone('US/Eastern')).strftime("%Y%m%d-%H%M%S") # Default ET
 
 if __name__ == '__main__':
     ## Read CSV

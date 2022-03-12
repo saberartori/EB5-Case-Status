@@ -9,6 +9,7 @@
 import pandas as pd
 import os
 from datetime import datetime
+from pytz import timezone
 from util.get_online_status import get_online_status
 
 pd.options.mode.chained_assignment = None  # default='warn'
@@ -24,7 +25,7 @@ exclude_NewCard = True
 
 ## Default Parma
 caseNum_list = list(range(CaseNum_Start, CaseNum_Ended + 1))
-dt = datetime.now().strftime("%Y%m%d-%H%M%S")
+dt = datetime.now(timezone('US/Eastern')).strftime("%Y%m%d-%H%M%S") # Default ET
 
 if __name__ == '__main__':
     path = f"FY{FY_YEAR}_485"
