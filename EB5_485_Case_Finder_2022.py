@@ -17,7 +17,7 @@ pd.options.mode.chained_assignment = None  # default='warn'
 ## Input this part
 FY_YEAR = 2022
 
-CaseNum_Start = 2290057668
+CaseNum_Start = 2290059694
 CaseNum_Ended = 2290059999
 
 exclude_CardDelivered = True
