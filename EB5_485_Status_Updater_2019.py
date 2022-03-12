@@ -16,7 +16,7 @@ from util.count_approval_by_date import count_approval_by_date
 pd.options.mode.chained_assignment = None  # default='warn'
 
 FY_YEAR = 2019
-dt = datetime.now(timezone('US/Eastern')).strftime("%Y%m%d-%H%M%S") # Default ET
+dt = datetime.now(timezone('US/Eastern')).strftime("%Y%m%d-%H%M%S")  # Default ET
 
 if __name__ == '__main__':
     ## Read CSV
@@ -42,14 +42,15 @@ if __name__ == '__main__':
     if update_num > 0:
         print('{} cases have been updated today'.format(update_num))
         print(df_updated_new[['CaseNum', 'Status', 'Date', 'Generated_at']])
+        df_updated_new_formatted = df_updated_new[['CaseNum', 'Status', 'Date', 'Generated_at', 'Status_Short']]
 
         try:
             df_updated_log = pd.read_csv(f"FY{FY_YEAR}/Update_log.csv")
         except FileNotFoundError as e:
-            df_updated_all = df_updated_new.iloc[:, 0:4]
+            df_updated_all = df_updated_new_formatted
         else:
             df_updated_log['CaseNum'] = df_updated_log['CaseNum'].astype(str)
-            df_updated_all = pd.concat([df_updated_log, df_updated_new.iloc[:, 0:4]])
+            df_updated_all = pd.concat([df_updated_log, df_updated_new_formatted])
 
         df_updated_all.to_csv(f"FY{FY_YEAR}/Update_log.csv", index=False)
     else:
